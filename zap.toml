@@ -1,0 +1,22 @@
+# Zap project manifest (zap.toml). TOML, Cargo-style (D-0052).
+#
+# `requests` is a non-core, official-tier package (D-0056): a Python-requests-
+# style ergonomic HTTP client, developed under zaplang-io and installed/managed
+# by the Zap package manager (I#69) — NOT a bundled stdlib module. It is a thin,
+# faithful wrapper over the stdlib `http` client (transport/TLS/netpoller, #104,
+# #280) and `json` (#131): it adds the requests-style verbs, a Response type,
+# query-param encoding and JSON bodies, but reimplements no transport.
+#
+# Layout (dogfoods Zap-to-Zap module imports, D-0081 / zaplang-io/zap#283):
+#   src/requests.zap          — the public API (get/post/put/delete/head/request)
+#   src/requests/response.zap  — the Response type
+#   src/requests/encode.zap    — query-string + JSON body encoding
+#   src/requests/session.zap   — a Session (base URL + default headers)
+# A consumer with `requests` as a dependency imports it as `import requests`
+# (and `import requests.session`).
+[package]
+name = "requests"
+version = "0.1.0"
+
+[dependencies]
+# None. requests uses only the stdlib `http` and `json` modules.

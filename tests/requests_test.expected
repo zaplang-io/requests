@@ -1,0 +1,10 @@
+GET observed: GET /search?q=a+b&n=2 trace=t-42
+GET status: 200
+GET ok: True
+GET text: pong
+GET header X-Demo: hello
+POST observed: ct=application/json body={"name":"Ada","age":36}
+POST status: 200
+POST json n: 7
+ERR status: 404
+ERR ok: False
